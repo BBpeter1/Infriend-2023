@@ -1,0 +1,47 @@
+<div class="row justify-content-md-center">
+    <div class="col-md-6">
+        <h4>Könyv adatok</h4>
+        <hr>
+    </div>
+</div>
+<div class="row justify-content-md-center">
+    <div class="col-md-6">
+        <form [formGroup]="bookForm">
+            <div class="mb-3">
+                <label for="title" class="form-label">Cím</label>
+                <input type="text" class="form-control" id="title" name="title" formControlName = "title">
+            </div>
+            <div class="mb-3">
+                <label for="author" class="form-label">Szerző</label>
+                <div class="input-group">
+                    <input type="text" step="0.5" class="form-control text-end pe-1" id="author" name="author" formControlName="author">
+                    <span class="input-group-text"></span>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="description" class="form-label">Leírás</label>
+                <textarea class="form-control" name="description" id="description" rows="2" formControlName = "description"></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="date" class="form-label">Dátum</label>
+                <input type="text" class="form-control" id="date" name="date" formControlName = "date">
+            </div>
+            <div class="mb-3">
+                <label for="uploader" class="form-label">Kölcsönző</label>
+                <select name="uploader" id="uploader" name="uploader" formControlName = "uploader" [compareWith] = "compareObjects" class = "form-select">
+                    <option [ngValue]="null">Nincs felhasználó</option>
+                    <option *ngFor = "let user of users" [ngValue]="{id: user.id}">{{user.name }}</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="categories" class="form-label">Kategória</label>
+                <select name="categories" id="categories" name="categories" formControlName = "categories" multiple [compareWith] = "compareObjects" class = "form-select">
+                    <option *ngFor = "let category of categories" [ngValue]="{id: category.id}">{{ category.title }}</option>
+                </select>
+            </div>
+            <div class="text-end">
+                <button class="btn btn-outline-primary" (click) ="saveProduct()">Mentés</button>
+            </div>
+        </form>
+    </div>
+</div>

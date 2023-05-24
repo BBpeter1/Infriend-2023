@@ -1,0 +1,22 @@
+<div class="row">
+    <div class="col-md-6" *ngFor = "let user of users">
+        <h5>{{user.name}} 
+            <span class="badge text-bg-success">{{user.isActive}}</span>
+        </h5>
+        <div class="row"> 
+            <div class="col-md-2">
+                <button class = "btn btn-sm btn-outline-primary" (click)="navigateToUserForm(user.id)">Szerkesztés</button>
+            </div>
+            <div class="col-md-2">
+                <button class = "btn btn-sm btn-outline-danger" (click)="deleteUser(user)">Törlés</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-9">
+                <p>Lakcím: {{ user.address}}</p>
+                <p>Telefonszám: {{user.phone}}</p>
+                <p>Személyi igazolványszám: {{user.szisz}}</p>
+            </div>
+        </div>
+    </div>
+</div>
