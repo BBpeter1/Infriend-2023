@@ -13,7 +13,8 @@ import { UserDTO } from 'models';
 
 export class UserListComponent implements OnInit {
   users: UserDTO[] = [];
-  toastrService: any;
+  toastrService: any
+  searchTerm: string = '';
 
   constructor(private userService: UserService,
     private toastr: ToastrService,
@@ -35,7 +36,11 @@ export class UserListComponent implements OnInit {
   }
 
   deleteUser(user: UserDTO) {
-    user.isActive = false;
+    user.isActive = true;
+  }
+
+  searchUsers() {
+    this.users = this.userService.searchUsers(this.searchTerm);
   }
 
 }

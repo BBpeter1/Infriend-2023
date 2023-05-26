@@ -23,7 +23,7 @@ export class UserFormComponent implements OnInit {
     phone: this.formBuilder.control(0),
     szisz: this.formBuilder.control(0),
     address: this.formBuilder.control(''),
-    isActive: this.formBuilder.control(true)
+    isActive: this.formBuilder.control(false)
   });
   
   toastrService: any;

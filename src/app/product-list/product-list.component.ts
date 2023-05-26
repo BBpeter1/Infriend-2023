@@ -12,6 +12,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 
 export class BookListComponent implements OnInit {
+
   books: BookDTO[] = [];
   toastrService: any;
   filteredBooks: BookDTO[] = [];
@@ -34,7 +35,7 @@ export class BookListComponent implements OnInit {
   }
 
   navigateToProductForm(id:number) {
-    this.router.navigate(['/book-form',id]);
+    this.router.navigate(['/product-form',id]);
   }
 
   deleteBook(book: BookDTO) {
@@ -53,7 +54,7 @@ export class BookListComponent implements OnInit {
         }
     });
   }
-
+  
   searchBooks() {
     const searchTerm = this.searchTerm.toLowerCase().trim();
     this.filteredBooks = this.books.filter(

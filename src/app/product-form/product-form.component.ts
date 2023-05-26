@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { BookService } from '../services/book.service';
 import { CategoryDTO, BookDTO, UserDTO } from 'models';
+import { formatDate } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
 import { UserService } from '../services/user.service';
 import { ActivatedRoute } from '@angular/router';
@@ -25,7 +26,7 @@ export class BookFormComponent implements OnInit {
     title: this.formBuilder.control(''),
     description: this.formBuilder.control(''),
     Author: this.formBuilder.control(''),
-    date: this.formBuilder.control(''),
+    date: this.formBuilder.control(new Date().toISOString().split('T')[0]),
     borrower: this.formBuilder.control<null | UserDTO>(null),
     categories: this.formBuilder.control<CategoryDTO[]>([])
   });

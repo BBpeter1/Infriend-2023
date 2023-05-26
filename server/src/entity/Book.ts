@@ -1,6 +1,5 @@
 import { Column, Entity, JoinTable, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { BookDTO, StatusDTO, UserDTO } from '../../../models';
-import { User } from './User';
 import { Category } from './Category';
 
 @Entity()
@@ -17,10 +16,10 @@ export class Book implements BookDTO {
     @Column({nullable: true, type: 'text' })
     description: string;
 
-    @Column()
+    @Column({nullable: true, type: 'text' })
     Author: string;
 
-    @Column({nullable: true})
+    @Column({nullable: true, type: 'date' })
     date: string;
 
   //  @ManyToOne(() => User, user => user.products, {eager:true})

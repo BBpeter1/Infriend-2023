@@ -23,7 +23,7 @@ export class User implements UserDTO {
     @Column()
     isActive:boolean;
 
-    @OneToMany(() => Book, book => book.borrower)
-    books: Book[];
+   // @Column()
+    //borrowedBooks: number[];
 
 }

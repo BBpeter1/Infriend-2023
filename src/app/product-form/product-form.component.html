@@ -23,8 +23,8 @@
                 <textarea class="form-control" name="description" id="description" rows="2" formControlName = "description"></textarea>
             </div>
             <div class="mb-3">
-                <label for="date" class="form-label">Dátum</label>
-                <input type="text" class="form-control" id="date" name="date" formControlName = "date">
+                <label for="date" class="form-label">Kiadás éve</label>
+                <input type="date" class="form-control" id="date" name="date" formControlName = "date">
             </div>
             <div class="mb-3">
                 <label for="uploader" class="form-label">Kölcsönző</label>
@@ -35,7 +35,7 @@
             </div>
             <div class="mb-3">
                 <label for="categories" class="form-label">Kategória</label>
-                <select name="categories" id="categories" name="categories" formControlName = "categories" multiple [compareWith] = "compareObjects" class = "form-select">
+                <select name="categories" id="categories" name="categories" formControlName = "categories" [compareWith] = "compareObjects" class = "form-select">
                     <option *ngFor = "let category of categories" [ngValue]="{id: category.id}">{{ category.title }}</option>
                 </select>
             </div>

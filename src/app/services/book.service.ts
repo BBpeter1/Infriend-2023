@@ -1,12 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BookDTO } from 'models';
+import { Book } from 'server/src/entity/Book';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BookService {
-  deleteProduct(ISBN: number) {
+  books: Book[] = [
+  ];
+  deleteProduct(id: number) {
     throw new Error('Method not implemented.');
   }
 
@@ -16,8 +19,8 @@ export class BookService {
     return this.http.get<BookDTO[]>('/api/books/');
   }
 
-  getOne(ISBN: number) {
-    return this.http.get<BookDTO>('/api/books/' + ISBN);
+  getOne(id: number) {
+    return this.http.get<BookDTO>('/api/books/' + id);
   }
 
   create(book: BookDTO){
@@ -28,8 +31,8 @@ export class BookService {
     return this.http.put<BookDTO>('/api/books/', book);
   }
 
-  delete(ISBN: number) {
-    return this.http.delete<BookDTO>('/api/books/' + ISBN);
+  delete(id: number) {
+    return this.http.delete<BookDTO>('/api/books/' + id);
   }
 
 }

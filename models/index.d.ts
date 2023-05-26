@@ -5,6 +5,7 @@ export interface UserDTO {
     szisz: number;
     address: string;
     isActive: boolean;
+   // borrowedBooks: number[];
 }
 
 export interface CategoryDTO {
