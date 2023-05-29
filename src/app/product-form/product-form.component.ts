@@ -27,7 +27,6 @@ export class BookFormComponent implements OnInit {
     description: this.formBuilder.control(''),
     Author: this.formBuilder.control(''),
     date: this.formBuilder.control(new Date().toISOString().split('T')[0]),
-    borrower: this.formBuilder.control<null | UserDTO>(null),
     categories: this.formBuilder.control<CategoryDTO[]>([])
   });
   
@@ -98,7 +97,6 @@ export class BookFormComponent implements OnInit {
     return obj1 && obj2 && obj1.id == obj2.id;
   }
 
-  
 }
 
 

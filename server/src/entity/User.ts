@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm"
-import { UserDTO } from "../../../models"
+import { BookDTO, UserDTO } from "../../../models"
 import { Book } from "./Book"
 
 @Entity()
@@ -23,7 +23,7 @@ export class User implements UserDTO {
     @Column()
     isActive:boolean;
 
-   // @Column()
-    //borrowedBooks: number[];
+    @OneToMany(() => User, user => user.borrowedBooks)
+    borrowedBooks: BookDTO[];
 
 }

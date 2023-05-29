@@ -1,14 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BookDTO } from 'models';
-import { Book } from 'server/src/entity/Book';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BookService {
-  books: Book[] = [
-  ];
   deleteProduct(id: number) {
     throw new Error('Method not implemented.');
   }
@@ -33,6 +31,18 @@ export class BookService {
 
   delete(id: number) {
     return this.http.delete<BookDTO>('/api/books/' + id);
+  }
+
+  getAvailableBooks(): Observable<BookDTO[]> {
+    return this.http.get<BookDTO[]>('/api/books/available');
+  }
+
+  borrowBook(userId: number, bookId: number): Observable<any> {
+    return this.http.post('api/books/borrow', { userId, bookId });
+  }
+
+  returnBook(userId: number, bookId: number): Observable<any> {
+    return this.http.post('api/books/return', { userId, bookId });
   }
 
 }

@@ -7,12 +7,14 @@ export function getRoutes() {
     const router = express.Router();
 
     const bookController = new BookController();
-
     router.get('/books', bookController.getAll);
     router.get('/books/:id', bookController.getOne);
     router.post('/books', bookController.create);
     router.put('/books', bookController.update);
     router.delete('/books/:id', bookController.delete);
+   // router.getAvailableBooks('/books/available', bookController.getAvailableBooks);
+   // router.borrowBook('/books/borrow', bookController.borrowBook);
+    // router.returnBook('/books/return', bookController.returnBook);
 
     const userController = new UserController();
     router.get('/users', userController.getAll);

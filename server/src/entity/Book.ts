@@ -1,11 +1,10 @@
 import { Column, Entity, JoinTable, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { BookDTO, StatusDTO, UserDTO } from '../../../models';
 import { Category } from './Category';
+import { User } from './User';
 
 @Entity()
 export class Book implements BookDTO {
-    borrower: UserDTO;
-    status: StatusDTO[];
 
     @PrimaryGeneratedColumn()
     id: number;
@@ -22,8 +21,14 @@ export class Book implements BookDTO {
     @Column({nullable: true, type: 'date' })
     date: string;
 
-  //  @ManyToOne(() => User, user => user.products, {eager:true})
-    //borrower: User;
+    @Column({nullable: true, type: 'date' })
+    borrowDate: string;
+
+    @Column({nullable: true, type: 'text' })
+    status: string;
+
+    @ManyToOne(() => User, user => user.borrowedBooks, {eager:true})
+    borrower: User;
 
     @ManyToMany(() => Category, { eager:true })
     @JoinTable()

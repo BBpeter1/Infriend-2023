@@ -16,7 +16,9 @@ export class BookListComponent implements OnInit {
   books: BookDTO[] = [];
   toastrService: any;
   filteredBooks: BookDTO[] = [];
+  availableBooks: BookDTO[] = [];
   searchTerm: string = '';
+  userId: number = 0;
 
 
   constructor(private bookService: BookService,
@@ -26,6 +28,7 @@ export class BookListComponent implements OnInit {
     
   }
   ngOnInit(): void {
+    this.loadAvailableBooks();
     this.bookService.getAll().subscribe(
       {
         next: (books) => {this.books = books},
@@ -62,10 +65,44 @@ export class BookListComponent implements OnInit {
     ).sort((a, b) => a.title.localeCompare(b.title));
   }
   
-
   getCategoryList(categories: CategoryDTO[]): string 
   {
     return categories.map((category) => category.title).join(", ");
+  }
+
+  loadAvailableBooks() {
+    this.bookService.getAvailableBooks().subscribe(
+      (books: BookDTO[]) => {
+        this.availableBooks = books;
+      },
+      (error) => {
+        console.log('Error retrieving available books:', error);
+      }
+    );
+  }
+
+  borrowBook(userId: number, bookId: number) {
+    this.bookService.borrowBook(userId, bookId).subscribe(
+      () => {
+        console.log('Book borrowed successfully');
+        this.loadAvailableBooks();
+      },
+      (error) => {
+        console.log('Error borrowing book:', error);
+      }
+    );
+  }
+
+  returnBook(userId: number, bookId: number) {
+    this.bookService.returnBook(userId, bookId).subscribe(
+      () => {
+        console.log('Book returned successfully');
+        this.loadAvailableBooks();
+      },
+      (error) => {
+        console.log('Error returning book:', error);
+      }
+    );
   }
 
 }

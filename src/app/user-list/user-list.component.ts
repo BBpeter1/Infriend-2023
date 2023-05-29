@@ -13,6 +13,7 @@ import { UserDTO } from 'models';
 
 export class UserListComponent implements OnInit {
   users: UserDTO[] = [];
+  filteredUsers: UserDTO[] = [];
   toastrService: any
   searchTerm: string = '';
 
@@ -40,7 +41,12 @@ export class UserListComponent implements OnInit {
   }
 
   searchUsers() {
-    this.users = this.userService.searchUsers(this.searchTerm);
+    const searchTerm = this.searchTerm.toLowerCase().trim();
+    this.filteredUsers = this.users.filter(user =>
+      user.name.toLowerCase().includes(searchTerm) ||
+      user.phone.toString().includes(searchTerm) ||
+      user.id.toString().includes(searchTerm)
+    );
   }
 
 }
