@@ -45,4 +45,8 @@ export class BookService {
     return this.http.post('api/books/return', { userId, bookId });
   }
 
+  getOverdueBooks(): Observable<any> {
+    return this.http.get('api/books/overdue');
+  }
+
 }

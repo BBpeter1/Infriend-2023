@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BookDTO, UserDTO } from 'models';
+import { AccessTokenDTO, BookDTO, LoginDTO, UserDTO } from 'models';
 @Injectable({
   providedIn: 'root'
 })
@@ -33,5 +33,9 @@ export class UserService {
   delete(user: UserDTO) {
     return this.http.put<UserDTO>('/api/users/' , user);
   }
+
+  login(data: LoginDTO) {
+    return this.http.post<AccessTokenDTO>('/api/users/login', data);
+}
   
 }

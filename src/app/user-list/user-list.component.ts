@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { UserDTO } from 'models';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-user-list',
@@ -20,6 +21,7 @@ export class UserListComponent implements OnInit {
   constructor(private userService: UserService,
     private toastr: ToastrService,
     private router: Router,
+    public authService: AuthService,
     private activatedRoute: ActivatedRoute) {
     
   }

@@ -1,4 +1,4 @@
-import { Repository} from "typeorm";
+import { Repository } from "typeorm";
 
 export abstract class Controller {
     repository: Repository<any>;
@@ -141,5 +141,32 @@ export abstract class Controller {
             res.status(500).json({ message: 'Error returning book' });
         }
     };
+
+    getOverdueBooks = async (req, res) => {
+        try {
+            const overdueDays = 30;
+
+            const overdueBooks = await this.repository
+                .createQueryBuilder('book')
+                .leftJoinAndSelect('book.borrower', 'user')
+                .where('book.status = :status', { status: 'kölcsönözve' })
+                .andWhere('book.borrowDate <= :dueDate', {
+                    dueDate: new Date(new Date().getTime() - overdueDays * 24 * 60 * 60 * 1000).toISOString(),
+                })
+                .getMany();
+
+            overdueBooks.forEach((book) => {
+                const borrowDate = new Date(book.borrowDate);
+                const currentDate = new Date();
+                const delay = Math.floor((currentDate.getTime() - borrowDate.getTime()) / (24 * 60 * 60 * 1000));
+                book.delay = delay;
+            });
+
+            res.json({ overdueBooks });
+        } catch (error) {
+            res.status(500).json({ message: 'Error retrieving overdue books' });
+        }
+    };
+
 
 }

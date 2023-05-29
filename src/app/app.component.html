@@ -10,14 +10,20 @@
           <a class="nav-link active" aria-current="page" href="#" routerLink="/">Könyvek</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#" routerLink="/product-form">Új könyv</a>
+          <a class="nav-link" href="#" *ngIf="authService.isLoggedIn()" routerLink="/product-form">Új könyv</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#" routerLink="/user-list">Felhasználók</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#" routerLink="/user-form">Új felhasználó</a>
+          <a class="nav-link" href="#" *ngIf="authService.isLoggedIn()" routerLink="/user-form">Új felhasználó</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" routerLink="/overdue-books">Késésben lévő könyvek</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" (click)="logout()">Kilépés</a>
+      </li>
       </ul>
     </div>
   </div>

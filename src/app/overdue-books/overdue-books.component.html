@@ -1,0 +1,7 @@
+<div *ngFor="let book of overdueBooks">
+    <h3>{{ book.title }}</h3>
+    <p>Borrower: {{ book.borrower.name }}</p>
+    <p>Borrowing Date: {{ book.borrowDate }}</p>
+    <p>Delay: {{ book.delay }} days</p>
+  </div>
+  

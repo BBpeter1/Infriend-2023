@@ -5,7 +5,18 @@ export interface UserDTO {
     szisz: number;
     address: string;
     isActive: boolean;
+    email: string;
+    password: string;
     borrowedBooks: BookDTO[];
+}
+
+export interface LoginDTO {
+    email: string;
+    password: string;
+}
+
+export interface AccessTokenDTO {
+    accessToken: string;
 }
 
 export interface CategoryDTO {

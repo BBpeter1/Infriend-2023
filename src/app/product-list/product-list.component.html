@@ -18,11 +18,11 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-2">
+            <div class="col-md-2" *ngIf="authService.isLoggedIn()">
                 <button class="btn btn-sm btn-outline-primary"
                     (click)="navigateToProductForm(book.id)">Szerkesztés</button>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-2" *ngIf="authService.isLoggedIn()">
                 <button class="btn btn-sm btn-outline-danger" (click)="deleteBook(book)">Törlés</button>
             </div>
         </div>

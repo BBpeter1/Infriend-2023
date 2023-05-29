@@ -3,6 +3,7 @@ import { CategoryDTO, BookDTO } from 'models';
 import { BookService } from '../services/book.service';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-product-list',
@@ -24,6 +25,7 @@ export class BookListComponent implements OnInit {
   constructor(private bookService: BookService,
     private toastr: ToastrService,
     private router: Router,
+    public authService: AuthService,
     private activatedRoute: ActivatedRoute) {
     
   }

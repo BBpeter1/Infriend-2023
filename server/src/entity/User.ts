@@ -1,6 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm"
 import { BookDTO, UserDTO } from "../../../models"
-import { Book } from "./Book"
 
 @Entity()
 export class User implements UserDTO {
@@ -25,5 +24,11 @@ export class User implements UserDTO {
 
     @OneToMany(() => User, user => user.borrowedBooks)
     borrowedBooks: BookDTO[];
+
+    @Column()
+    email: string;
+
+    @Column({ select: false })
+    password: string;
 
 }
