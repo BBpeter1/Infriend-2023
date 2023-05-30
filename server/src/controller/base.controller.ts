@@ -93,7 +93,8 @@ export abstract class Controller {
         try {
             const { userId, bookId } = req.body;
 
-            const user = await this.repository.findOne(userId);
+            console.log(req.user.id);
+            const user = await this.repository.findOne(req.user.id);
             const book = await this.repository.findOne(bookId);
 
             if (!user || !book) {
@@ -114,6 +115,7 @@ export abstract class Controller {
 
             res.json({ message: 'Book borrowed successfully' });
         } catch (error) {
+            console.error(error);
             res.status(500).json({ message: 'Error borrowing book' });
         }
     };

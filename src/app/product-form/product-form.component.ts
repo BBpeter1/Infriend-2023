@@ -26,6 +26,7 @@ export class BookFormComponent implements OnInit {
     title: this.formBuilder.control(''),
     description: this.formBuilder.control(''),
     Author: this.formBuilder.control(''),
+    status: this.formBuilder.control('szabad'),
     date: this.formBuilder.control(new Date().toISOString().split('T')[0]),
     categories: this.formBuilder.control<CategoryDTO[]>([])
   });

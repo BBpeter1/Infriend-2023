@@ -38,8 +38,5 @@ export class UserService {
     return this.http.post<AccessTokenDTO>('/api/users/login', data);
   }
 
-  registration(data: LoginDTO) {
-    return this.http.post<AccessTokenDTO>('/api/users/registration', data);
-  }
 
 }

@@ -12,7 +12,7 @@ export function getRoutes() {
     router.post('/books', checkUser, bookController.create);
     router.put('/books', checkUser, bookController.update);
     router.get('/books/available', bookController.getAvailableBooks);
-    router.post('/books/borrow', bookController.borrowBook);
+    router.post('/books/borrow', checkUser, bookController.borrowBook);
     router.post('/books/return', bookController.returnBook);
     router.get('/books/overdue', bookController.getOverdueBooks);
     router.get('/books/:id', bookController.getOne);

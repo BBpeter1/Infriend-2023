@@ -4,7 +4,7 @@ import { UserService } from '../services/user.service';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { LoginDTO } from 'models';
+import { LoginDTO, UserDTO } from 'models';
 
 @Component({
   selector: 'app-registration',
@@ -25,11 +25,10 @@ export class RegistrationComponent {
     private toastrService: ToastrService) { }
 
   registration() {
-    const regiData = this.registrationForm.value as LoginDTO;
+    const regiData = this.registrationForm.value as UserDTO;
 
-    this.userService.registration(regiData).subscribe({
+    this.userService.create(regiData).subscribe({
       next: (response) => {
-        this.authService.setToken(response.accessToken);
         this.router.navigateByUrl('/');
       },
       error: (err) => {
