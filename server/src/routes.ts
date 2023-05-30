@@ -9,13 +9,14 @@ export function getRoutes() {
 
     const bookController = new BookController();
     router.get('/books', bookController.getAll);
-    router.get('/books/:id', bookController.getOne);
     router.post('/books', checkUser, bookController.create);
     router.put('/books', checkUser, bookController.update);
-    router.delete('/books/:id', checkUser, bookController.delete);
     router.get('/books/available', bookController.getAvailableBooks);
     router.post('/books/borrow', bookController.borrowBook);
     router.post('/books/return', bookController.returnBook);
+    router.get('/books/overdue', bookController.getOverdueBooks);
+    router.get('/books/:id', bookController.getOne);
+    router.delete('/books/:id', checkUser, bookController.delete);
 
     const userController = new UserController();
     router.get('/users', userController.getAll);
