@@ -7,21 +7,22 @@ import { UserFormComponent } from './user-form/user-form.component';
 import { OverdueBooksComponent } from './overdue-books/overdue-books.component';
 import { LoginComponent } from './login/login.component';
 import { AuthService } from './services/auth.service';
+import { RegistrationComponent } from './registration/registration.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'product-list',
     component: BookListComponent
   },
   {
     path: 'product-form',
     component: BookFormComponent,
-    canActivate: [ () => inject(AuthService).preventGuestAccess() ]
+    canActivate: [() => inject(AuthService).preventGuestAccess()]
   },
   {
     path: 'product-form/:id',
     component: BookFormComponent,
-    canActivate: [ () => inject(AuthService).preventGuestAccess() ]
+    canActivate: [() => inject(AuthService).preventGuestAccess()]
   },
   {
     path: 'user-list',
@@ -30,21 +31,25 @@ const routes: Routes = [
   {
     path: 'user-form',
     component: UserFormComponent,
-    canActivate: [ () => inject(AuthService).preventGuestAccess() ]
+    canActivate: [() => inject(AuthService).preventGuestAccess()]
   },
   {
     path: 'user-form/:id',
     component: UserFormComponent,
-    canActivate: [ () => inject(AuthService).preventGuestAccess() ]
+    canActivate: [() => inject(AuthService).preventGuestAccess()]
   },
   {
     path: 'overdue-books',
     component: OverdueBooksComponent
   },
   {
-    path: 'login',
+    path: '',
     component: LoginComponent
-},
+  },
+  {
+    path: 'registration',
+    component: RegistrationComponent
+  },
 ];
 
 @NgModule({

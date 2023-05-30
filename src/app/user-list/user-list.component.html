@@ -7,26 +7,30 @@
     </ul>
 </div>
 
-
-<div class="row">
-    <div class="col-md-6" *ngFor = "let user of users">
-        <h5>{{user.name}} 
-            <span class="badge text-bg-success">Inaktivált felhasználó: {{user.isActive}}</span>
-        </h5>
-        <div class="row"> 
-            <div class="col-md-2" *ngIf="authService.isLoggedIn()">
-                <button class = "btn btn-sm btn-outline-primary" (click)="navigateToUserForm(user.id)">Szerkesztés</button>
-            </div>
-            <div class="col-md-2" *ngIf="authService.isLoggedIn()">
-                <button class = "btn btn-sm btn-outline-danger" (click)="deleteUser(user)">Törlés</button>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-9">
-                <p>Lakcím: {{ user.address}}</p>
-                <p>Telefonszám: {{user.phone}}</p>
-                <p>Személyi igazolványszám: {{user.szisz}}</p>
-            </div>
-        </div>
-    </div>
-</div>
+<table class="table table-striped">
+	<thead>
+		<tr>
+            <th scope="col">ID</th>
+			<th scope="col">Felhasználó neve</th>
+			<th scope="col">Inaktivált felhasználó?</th>
+            <th scope="col">Felhasználó címe</th>
+            <th scope="col">Felhasználó telefonszáma</th>
+            <th scope="col">Felhasználó személyigazolvány száma</th>
+            <th scope="col">Szerkesztés</th>
+            <th scope="col">Törlés</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor="let user of users">
+			<th scope="row">{{ user.id | number }}</th>
+			<td>{{ user.name }}</td>
+			<td>{{ user.isActive }}</td>
+            <td>{{ user.address }}</td>
+            <td>{{ user.phone }}</td>
+            <td>{{user.szisz}}</td>
+            <td *ngIf="authService.isLoggedIn()"><button class="btn btn-sm btn-outline-primary"
+                (click)="navigateToUserForm(user.id)">Szerkesztés</button></td>
+            <td *ngIf="authService.isLoggedIn()"><button class="btn btn-sm btn-outline-danger" (click)="deleteUser(user)">Törlés</button></td>
+		</tr>
+	</tbody>
+</table>

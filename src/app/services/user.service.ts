@@ -6,12 +6,12 @@ import { AccessTokenDTO, BookDTO, LoginDTO, UserDTO } from 'models';
 })
 export class UserService {
   private users: UserDTO[] = [];
-  
+
   deleteUser(id: number) {
     throw new Error('Method not implemented.');
   }
 
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient) {
   }
 
   getAll() {
@@ -22,7 +22,7 @@ export class UserService {
     return this.http.get<UserDTO>('/api/users/' + id);
   }
 
-  create(user: UserDTO){
+  create(user: UserDTO) {
     return this.http.post<UserDTO>('/api/users/', user);
   }
 
@@ -31,11 +31,15 @@ export class UserService {
   }
 
   delete(user: UserDTO) {
-    return this.http.put<UserDTO>('/api/users/' , user);
+    return this.http.put<UserDTO>('/api/users/', user);
   }
 
   login(data: LoginDTO) {
     return this.http.post<AccessTokenDTO>('/api/users/login', data);
-}
-  
+  }
+
+  registration(data: LoginDTO) {
+    return this.http.post<AccessTokenDTO>('/api/users/registration', data);
+  }
+
 }

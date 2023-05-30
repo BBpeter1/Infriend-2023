@@ -1,6 +1,6 @@
 <div class="row justify-content-md-center">
     <div class="col-md-6">
-        <form [formGroup]="loginForm">
+        <form [formGroup]="registrationForm">
             <div class="mb-3">
                 <label for="email" class="form-label">E-mail cím</label>
                 <input type="email" class="form-control" id="email" formControlName="email">
@@ -11,8 +11,12 @@
             </div>
             
             <div class="text-center">
-                <button class="btn btn-outline-primary" (click)="login()">Belépés</button>
+                <button class="btn btn-outline-primary" (click)="registration()">Regisztráció</button>
             </div>
         </form>
     </div>
 </div>
+
+<li class="nav-item">
+    <a class="nav-link" routerLink="/registration">Regisztráció</a>
+</li>

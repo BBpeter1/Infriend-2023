@@ -15,6 +15,7 @@ import { OverdueBooksComponent } from './overdue-books/overdue-books.component';
 import { LoginComponent } from './login/login.component';
 import { AccessTokenInterceptor } from './services/access-token.interceptor';
 import { UnauthorizedInterceptor } from './services/unauthorized.interceptor';
+import { RegistrationComponent } from './registration/registration.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { UnauthorizedInterceptor } from './services/unauthorized.interceptor';
     UserListComponent,
     UserFormComponent,
     OverdueBooksComponent,
-    LoginComponent
+    LoginComponent,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule,
