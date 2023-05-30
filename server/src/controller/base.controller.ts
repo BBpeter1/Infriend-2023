@@ -91,15 +91,16 @@ export abstract class Controller {
 
     borrowBook = async (req, res) => {
         try {
-            const { userId, bookId } = req.body;
+            const { bookId } = req.body;
 
-            console.log(req.user.id);
-            const user = await this.repository.findOne(req.user.id);
-            const book = await this.repository.findOne(bookId);
+            const user = await this.repository.findOneBy({ id: req.auth.id });
+            const book = await this.repository.findOneBy({ id: bookId });
 
             if (!user || !book) {
                 return res.status(404).json({ message: 'User or book not found' });
             }
+
+            // TODO: user.borrowedBooks is undefined, querying borrowed books of the user is necessary
 
             if (user.borrowedBooks.length >= 6) {
                 return res.status(400).json({ message: 'User has reached the maximum limit of borrowed books' });
