@@ -24,6 +24,11 @@
                 <input type="date" class="form-control" id="date" name="date" formControlName = "date">
             </div>
             <div class="mb-3">
+                <select name="category" class="form-select" formControlName = "category">
+                    <option value = "cd">CD</option>
+                    <option value = "kazetta">Kazetta</option>
+                    <option value = "könyv">könyv</option>
+                </select>
                 <label for="category" class="form-label">Kategória [cd,könyv,kazetta]</label>
                 <input type="text" class="form-control" id="category" name="category" formControlName = "category">
             </div>

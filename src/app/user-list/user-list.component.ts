@@ -43,12 +43,15 @@ export class UserListComponent implements OnInit {
   }
 
   searchUsers() {
-    const searchTerm = this.searchTerm.toLowerCase().trim();
+    if(this.searchTerm.toLowerCase().trim())
     this.filteredUsers = this.users.filter(user =>
-      user.name.toLowerCase().includes(searchTerm) ||
-      user.phone.toString().includes(searchTerm) ||
-      user.id.toString().includes(searchTerm)
+      user.name.toLowerCase().includes(this.searchTerm) ||
+      user.phone.toString().includes(this.searchTerm) ||
+      user.id.toString().includes(this.searchTerm)
     );
+    else{
+      this.filteredUsers = this.users
+    }
   }
 
 }

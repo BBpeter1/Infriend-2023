@@ -1,10 +1,5 @@
 <div class="row">
     <input type="text" [(ngModel)]="searchTerm" (input)="searchBooks()" placeholder="Search...">
-    <ul>
-        <li *ngFor="let book of filteredBooks">
-            <span>{{ book.title }}</span> - <span>{{ book.Author }}</span>
-        </li>
-    </ul>
 </div>
 
 <h2>Termékek listája</h2>
@@ -22,7 +17,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr *ngFor="let book of books">
+		<tr *ngFor="let book of filteredBooks">
 			<th scope="row">{{ book.id | number }}</th>
 			<td>{{ book.date }}</td>
 			<td>{{ book.title }}</td>

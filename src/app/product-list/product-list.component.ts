@@ -61,13 +61,16 @@ export class BookListComponent implements OnInit {
   }
   
   searchBooks() {
-    const searchTerm = this.searchTerm.toLowerCase().trim();
+    if(this.searchTerm.toLowerCase().trim())
     this.filteredBooks = this.books.filter(
-      book => book.title.toLowerCase().includes(searchTerm) || book.Author.toLowerCase().includes(searchTerm)
+      book => book.title.toLowerCase().includes(this.searchTerm) || book.Author.toLowerCase().includes(this.searchTerm)
     ).sort((a, b) => a.title.localeCompare(b.title));
+    else
+    {
+      this.filteredBooks = this.books.slice();
+    }
   }
   
-
   loadAvailableBooks() {
     this.bookService.getAvailableBooks().subscribe(
       (books: BookDTO[]) => {
