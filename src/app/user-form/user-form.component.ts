@@ -4,7 +4,6 @@ import { UserDTO } from 'models';
 import { UserService } from '../services/user.service';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute } from '@angular/router';
-import { CategoryService } from '../services/category.service';
 
 @Component({
   selector: 'app-user-form',
@@ -31,7 +30,6 @@ export class UserFormComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
     private toastr: ToastrService,
     private activatedRoute: ActivatedRoute,
-    private categoryService: CategoryService,
     private userService: UserService) {}
 
     

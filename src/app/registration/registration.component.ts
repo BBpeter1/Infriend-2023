@@ -29,7 +29,7 @@ export class RegistrationComponent {
 
     this.userService.create(regiData).subscribe({
       next: (response) => {
-        this.router.navigateByUrl('/');
+        this.router.navigateByUrl('/login');
       },
       error: (err) => {
         this.toastrService.error(err.error.error, 'Error');

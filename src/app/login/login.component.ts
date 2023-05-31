@@ -30,7 +30,7 @@ export class LoginComponent {
     this.userService.login(loginData).subscribe({
       next: (response) => {
         this.authService.setToken(response.accessToken);
-        this.router.navigateByUrl('/');
+        this.router.navigateByUrl('/product-list');
       },
       error: (err) => {
         this.toastrService.error(err.error.error, 'Error');

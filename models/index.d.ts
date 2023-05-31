@@ -19,10 +19,6 @@ export interface AccessTokenDTO {
     accessToken: string;
 }
 
-export interface CategoryDTO {
-    id: number;
-    title: string;
-}
 
 export interface StatusDTO {
     id: number;
@@ -36,6 +32,6 @@ export interface BookDTO {
     Author: string;
     date: string;
     borrowDate: string;
-    categories: CategoryDTO[];
+    category: string;
     status: string;
 }

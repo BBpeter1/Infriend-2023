@@ -1,4 +1,6 @@
 import { Repository } from "typeorm";
+import { AppDataSource } from "../data-source";
+import { Book } from "../entity/Book";
 
 export abstract class Controller {
     repository: Repository<any>;
@@ -91,16 +93,18 @@ export abstract class Controller {
 
     borrowBook = async (req, res) => {
         try {
+
             const { bookId } = req.body;
 
             const user = await this.repository.findOneBy({ id: req.auth.id });
             const book = await this.repository.findOneBy({ id: bookId });
 
+        
             if (!user || !book) {
                 return res.status(404).json({ message: 'User or book not found' });
             }
 
-            // TODO: user.borrowedBooks is undefined, querying borrowed books of the user is necessary
+            await AppDataSource.getRepository(Book).findBy({ borrower: { id: req.auth.id } })
 
             if (user.borrowedBooks.length >= 6) {
                 return res.status(400).json({ message: 'User has reached the maximum limit of borrowed books' });

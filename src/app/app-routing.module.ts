@@ -12,7 +12,8 @@ import { RegistrationComponent } from './registration/registration.component';
 const routes: Routes = [
   {
     path: 'product-list',
-    component: BookListComponent
+    component: BookListComponent,
+    canActivate: [() => inject(AuthService).preventGuestAccess()]
   },
   {
     path: 'product-form',
@@ -26,7 +27,8 @@ const routes: Routes = [
   },
   {
     path: 'user-list',
-    component: UserListComponent
+    component: UserListComponent,
+    canActivate: [() => inject(AuthService).preventGuestAccess()]
   },
   {
     path: 'user-form',
@@ -40,14 +42,15 @@ const routes: Routes = [
   },
   {
     path: 'overdue-books',
+    canActivate: [() => inject(AuthService).preventGuestAccess()],
     component: OverdueBooksComponent
   },
   {
-    path: '',
+    path: 'login',
     component: LoginComponent
   },
   {
-    path: 'registration',
+    path: '',
     component: RegistrationComponent
   },
 ];

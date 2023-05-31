@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CategoryDTO, BookDTO } from 'models';
+import { BookDTO } from 'models';
 import { BookService } from '../services/book.service';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -67,10 +67,6 @@ export class BookListComponent implements OnInit {
     ).sort((a, b) => a.title.localeCompare(b.title));
   }
   
-  getCategoryList(categories: CategoryDTO[]): string 
-  {
-    return categories.map((category) => category.title).join(", ");
-  }
 
   loadAvailableBooks() {
     this.bookService.getAvailableBooks().subscribe(

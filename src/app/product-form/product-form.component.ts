@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { BookService } from '../services/book.service';
-import { CategoryDTO, BookDTO, UserDTO } from 'models';
+import { BookDTO, UserDTO } from 'models';
 import { formatDate } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
 import { UserService } from '../services/user.service';
 import { ActivatedRoute } from '@angular/router';
-import { CategoryService } from '../services/category.service';
 
 @Component({
   selector: 'app-book-form',
@@ -19,16 +18,14 @@ export class BookFormComponent implements OnInit {
 
   users: UserDTO[] = [];
 
-  categories: CategoryDTO[] = [];
-
   bookForm = this.formBuilder.group({
     id: this.formBuilder.control(0),
     title: this.formBuilder.control(''),
     description: this.formBuilder.control(''),
     Author: this.formBuilder.control(''),
     status: this.formBuilder.control('szabad'),
-    date: this.formBuilder.control(new Date().toISOString().split('T')[0]),
-    categories: this.formBuilder.control<CategoryDTO[]>([])
+    category: this.formBuilder.control(''),
+    date: this.formBuilder.control(new Date().toISOString().split('T')[0])
   });
   
   toastrService: any;
@@ -37,7 +34,7 @@ export class BookFormComponent implements OnInit {
     private bookService: BookService,
     private toastr: ToastrService,
     private activatedRoute: ActivatedRoute,
-    private categoryService: CategoryService,
+
     private userService: UserService) {}
 
     
@@ -65,13 +62,6 @@ export class BookFormComponent implements OnInit {
       }
     });
 
-    this.categoryService.getAll().subscribe({
-      next: (categories) => this.categories = categories,
-      error: (err) => {
-        console.error(err);
-        this.toastrService.error('A kategória betöltése sikertelen','Hiba');
-      }
-    });
   }
 
     saveProduct()

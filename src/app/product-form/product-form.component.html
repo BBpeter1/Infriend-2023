@@ -24,10 +24,8 @@
                 <input type="date" class="form-control" id="date" name="date" formControlName = "date">
             </div>
             <div class="mb-3">
-                <label for="categories" class="form-label">Kategória</label>
-                <select name="categories" id="categories" name="categories" formControlName = "categories" [compareWith] = "compareObjects" class = "form-select">
-                    <option *ngFor = "let category of categories" [ngValue]="{id: category.id}">{{ category.title }}</option>
-                </select>
+                <label for="category" class="form-label">Kategória [cd,könyv,kazetta]</label>
+                <input type="text" class="form-control" id="category" name="category" formControlName = "category">
             </div>
             <div class="text-end">
                 <button class="btn btn-outline-primary" (click) ="saveProduct()">Mentés</button>
