@@ -104,7 +104,7 @@ export abstract class Controller {
                 return res.status(404).json({ message: 'User or book not found' });
             }
 
-            await AppDataSource.getRepository(Book).findBy({ borrower: { id: req.auth.id } })
+            user.borrowedBooks = await AppDataSource.getRepository(Book).findBy({ borrower: { id: req.auth.id } })
 
             if (user.borrowedBooks.length >= 6) {
                 return res.status(400).json({ message: 'User has reached the maximum limit of borrowed books' });
